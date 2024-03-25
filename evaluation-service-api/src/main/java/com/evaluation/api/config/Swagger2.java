@@ -24,16 +24,14 @@ public class Swagger2 {
     // 配置swagger2核心配置 docket
     @Bean
     public Docket createRestApi() {
-        Predicate<RequestHandler> adminPredicate = RequestHandlerSelectors.basePackage("com.imooc.admin.controller");
-        Predicate<RequestHandler> articlePredicate = RequestHandlerSelectors.basePackage("com.imooc.article.controller");
-        Predicate<RequestHandler> userPredicate = RequestHandlerSelectors.basePackage("com.imooc.user.controller");
-        Predicate<RequestHandler> filesPredicate = RequestHandlerSelectors.basePackage("com.imooc.files.controller");
+        Predicate<RequestHandler> adminPredicate = RequestHandlerSelectors.basePackage("com.evaluation.admin.controller");
+        Predicate<RequestHandler> evalPredicate = RequestHandlerSelectors.basePackage("com.evaluation.eval.controller");
+        Predicate<RequestHandler> userPredicate = RequestHandlerSelectors.basePackage("com.evaluation.user.controller");
 
         return new Docket(DocumentationType.SWAGGER_2)  // 指定api类型为swagger2
                 .apiInfo(apiInfo())                 // 用于定义api文档汇总信息
                 .select()
-                .apis(Predicates.or(userPredicate, articlePredicate, adminPredicate, filesPredicate))
-//                .apis(Predicates.or(adminPredicate, articlePredicate, userPredicate, filesPredicate))
+                .apis(Predicates.or(userPredicate, evalPredicate, adminPredicate))
                 .paths(PathSelectors.any())         // 所有controller
                 .build();
     }

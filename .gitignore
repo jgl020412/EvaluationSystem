@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+evaluation-common/src/main/resources/tencentcould.properties

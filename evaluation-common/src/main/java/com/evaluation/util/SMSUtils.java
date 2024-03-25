@@ -1,73 +1,54 @@
 package com.evaluation.util;
 
-import com.evaluation.util.extend.TencentResource;
+
+import com.evaluation.util.extend.TencentCouldKey;
 import com.tencentcloudapi.common.Credential;
-import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.common.profile.ClientProfile;
 import com.tencentcloudapi.common.profile.HttpProfile;
+import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.sms.v20210111.SmsClient;
-import com.tencentcloudapi.sms.v20210111.models.SendSmsRequest;
-import com.tencentcloudapi.sms.v20210111.models.SendSmsResponse;
+import com.tencentcloudapi.sms.v20210111.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * @author 小亮
- **/
 @Component
 public class SMSUtils {
 
     @Autowired
-    private TencentResource tencentResource;
-
+    private TencentCouldKey tencentCouldKey;
 
     public void sendSMS(String phone, String code) {
         try {
-            /* 必要步骤：
-             * 实例化一个认证对象，入参需要传入腾讯云账户密钥对secretId，secretKey。
-             * 这里采用的是从环境变量读取的方式，需要在环境变量中先设置这两个值。
-             * 你也可以直接在代码中写死密钥对，但是小心不要将代码复制、上传或者分享给他人，
-             * 以免泄露密钥对危及你的财产安全。
-             * CAM密匙查询获取: https://console.cloud.tencent.com/cam/capi*/
-            Credential cred = new Credential(tencentResource.getAppId(),
-                    tencentResource.getSecretId());
-
-            System.out.println(tencentResource.getAppId());
-
+            // 实例化一个认证对象，入参需要传入腾讯云账户 SecretId 和 SecretKey，此处还需注意密钥对的保密
+            // 代码泄露可能会导致 SecretId 和 SecretKey 泄露，并威胁账号下所有资源的安全性。以下代码示例仅供参考，建议采用更安全的方式来使用密钥，请参见：https://cloud.tencent.com/document/product/1278/85305
+            // 密钥可前往官网控制台 https://console.cloud.tencent.com/cam/capi 进行获取
+            Credential cred = new Credential(tencentCouldKey.getId(), tencentCouldKey.getKey());
             // 实例化一个http选项，可选的，没有特殊需求可以跳过
             HttpProfile httpProfile = new HttpProfile();
-
-//            httpProfile.setReqMethod("POST"); // 默认使用POST
-
-            /* SDK会自动指定域名。通常是不需要特地指定域名的，但是如果你访问的是金融区的服务
-             * 则必须手动指定域名，例如sms的上海金融区域名： sms.ap-shanghai-fsi.tencentcloudapi.com */
             httpProfile.setEndpoint("sms.tencentcloudapi.com");
-
-            // 实例化一个client选项
+            // 实例化一个client选项，可选的，没有特殊需求可以跳过
             ClientProfile clientProfile = new ClientProfile();
             clientProfile.setHttpProfile(httpProfile);
             // 实例化要请求产品的client对象,clientProfile是可选的
-            SmsClient client = new SmsClient(cred, "ap-nanjing", clientProfile);
-
+            SmsClient client = new SmsClient(cred, "ap-beijing", clientProfile);
             // 实例化一个请求对象,每个接口都会对应一个request对象
             SendSmsRequest req = new SendSmsRequest();
-            String[] phoneNumberSet1 = {"+86" + phone};//电话号码
+            String[] phoneNumberSet1 = {phone};
             req.setPhoneNumberSet(phoneNumberSet1);
-            req.setSmsSdkAppId("1400698817");   // 短信应用ID: 短信SdkAppId在 [短信控制台] 添加应用后生成的实际SdkAppId
-            req.setSignName("卡世界的bug的小店");         // 签名
-            req.setTemplateId("1454390");       // 模板id：必须填写已审核通过的模板 ID。模板ID可登录 [短信控制台] 查看
 
-            /* 模板参数（自定义占位变量）: 若无模板参数，则设置为空 */
+            req.setSmsSdkAppId("1400698817");
+            req.setSignName("卡世界的bug的小店");
+            req.setTemplateId("1456261");
+
             String[] templateParamSet1 = {code};
             req.setTemplateParamSet(templateParamSet1);
 
             // 返回的resp是一个SendSmsResponse的实例，与请求对象对应
             SendSmsResponse resp = client.SendSms(req);
             // 输出json格式的字符串回包
-            System.out.println(SendSmsResponse.toJsonString(resp));
+            System.out.println(resp);
         } catch (TencentCloudSDKException e) {
             System.out.println(e.toString());
         }
     }
-
 }
