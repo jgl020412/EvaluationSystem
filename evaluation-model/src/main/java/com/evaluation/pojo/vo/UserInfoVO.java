@@ -1,102 +1,68 @@
-package com.evaluation.pojo.bo;
+package com.evaluation.pojo.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
  * @author 小亮
  **/
-public class UpdateUserInfoBO {
-
-    @NotBlank(message = "用户ID不能为空")
-    private String id;
+public class UserInfoVO {
 
     /**
      * 姓名
      */
-    @NotBlank(message = "名字不能为空")
     private String name;
 
     /**
      * 密码
      */
-    @NotBlank(message = "密码不能为空")
     private String password;
 
     /**
      * 手机号
      */
-    @NotBlank(message = "手机号不能为空")
     private String phoneNum;
-
 
     /**
      * 邮箱地址
      */
-    @NotBlank(message = "邮箱地址不能为空")
     private String mail;
 
     /**
      * 身份证号
      */
-    @NotBlank(message = "身份证号不能为空")
     private String idNum;
 
     /**
      * 职位
      */
-    @NotBlank(message = "职位不能为空")
     private String job;
 
     /**
      * 性别
      */
-    @NotNull(message = "性别不能为空")
     private Integer sex;
 
     /**
      * 生日
      */
-    @NotNull(message = "生日不能为空")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd") // 解决前端日期字符串传到后端后，转换为Date类型
+
     private Date birthday;
 
     /**
      * 省份
      */
-    @NotBlank(message = "省份不能为空")
     private String province;
 
     /**
      * 城市
      */
-    @NotBlank(message = "城市不能为空")
     private String city;
 
     /**
      * 区县
      */
-    @NotBlank(message = "区县不能为空")
     private String district;
 
-    /**
-     * @return ID
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
 
     /**
      * 获取姓名

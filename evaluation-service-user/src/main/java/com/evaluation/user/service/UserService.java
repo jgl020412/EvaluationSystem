@@ -38,4 +38,11 @@ public interface UserService {
      * @return 更新后的用户对象
      */
     public User updateUserInfo(UpdateUserInfoBO updateUserInfoBO);
+
+    /**
+     * 删除用户信息
+     * @param userId
+     * @return 返回删除的用户数量
+     */
+    public Integer deleteUser(String userId);
 }
