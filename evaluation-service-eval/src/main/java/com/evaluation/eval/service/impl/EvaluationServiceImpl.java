@@ -83,4 +83,9 @@ public class EvaluationServiceImpl extends BaseService implements EvaluationServ
         List<Evaluation> list = evaluationMapper.selectByExample(example);
         return setterPagedGrid(list, page);
     }
+
+    @Override
+    public void deleteEvaluation(String id) {
+        evaluationMapper.deleteByPrimaryKey(id);
+    }
 }

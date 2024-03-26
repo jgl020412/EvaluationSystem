@@ -38,4 +38,10 @@ public interface EvaluationService {
      */
     public PagedGridResult queryEvaluationListOfService(String serviceId, String date, Integer level, Integer page, Integer pageSize);
 
+    /**
+     * 删除评论
+     * @param id
+     */
+    public void deleteEvaluation(String id);
+
 }

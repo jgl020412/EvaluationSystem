@@ -39,4 +39,8 @@ public interface EvaluationControllerApi {
                                                         @RequestParam Integer page,
                                                         @RequestParam Integer pageSize);
 
+    @PostMapping("deleteEvaluation")
+    @ApiOperation(value = "删除评价", notes = "删除评价", httpMethod = "POST")
+    public GraceJSONResult deleteEvaluation(@RequestParam String id);
+
 }

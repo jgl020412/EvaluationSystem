@@ -59,7 +59,7 @@ public enum ResponseStatusEnum {
     SERVICE_NOT_EXIST_ERROR(581, false, "请选择正确的服务！"),
     ARTICLE_CREATE_ERROR(582, false, "创建文章失败，请重试或联系管理员！"),
     EVALUATION_QUERY_PARAMS_ERROR(583, false, "文章列表查询参数错误！"),
-    ARTICLE_DELETE_ERROR(584, false, "文章删除失败！"),
+    REPLY_DELETE_ERROR(584, false, "回复删除失败！"),
     ARTICLE_WITHDRAW_ERROR(585, false, "文章撤回失败！"),
     ARTICLE_REVIEW_ERROR(585, false, "文章审核出错！"),
     ARTICLE_ALREADY_READ_ERROR(586, false, "文章重复阅读！"),

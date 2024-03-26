@@ -88,4 +88,10 @@ public class EvaluationController extends BaseController implements EvaluationCo
 
         return GraceJSONResult.ok(pagedGridResult);
     }
+
+    @Override
+    public GraceJSONResult deleteEvaluation(String id) {
+        evaluationService.deleteEvaluation(id);
+        return GraceJSONResult.ok();
+    }
 }
