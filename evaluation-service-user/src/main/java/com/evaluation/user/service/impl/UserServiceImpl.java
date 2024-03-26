@@ -32,9 +32,6 @@ public class UserServiceImpl extends BaseService implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    private Sid sid;
-
     @Override
     public User queryMobileIsExist(String mobile) {
         Example userExample = new Example(User.class);
