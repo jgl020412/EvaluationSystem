@@ -29,7 +29,7 @@ public class EvaluationServiceImpl extends BaseService implements EvaluationServ
 
     @Transactional
     @Override
-    public void createEvaluation(NewEvaluationBO newEvaluationBO, com.evaluation.pojo.Service service) {
+    public void createEvaluation(NewEvaluationBO newEvaluationBO) {
         String id = sid.nextShort();
         Evaluation evaluation = new Evaluation();
         BeanUtils.copyProperties(newEvaluationBO, evaluation);
@@ -55,7 +55,6 @@ public class EvaluationServiceImpl extends BaseService implements EvaluationServ
         if (level != null) {
             criteria.andEqualTo("level", level);
         }
-
 
         PageHelper.startPage(page, pageSize);
         List<Evaluation> list = evaluationMapper.selectByExample(example);

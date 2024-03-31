@@ -25,6 +25,10 @@ public class ServServiceImpl extends BaseService implements ServService {
     @Transactional
     @Override
     public void createService(com.evaluation.pojo.Service service) {
+
+        String id = sid.nextShort();
+        service.setId(id);
+
         int result = serviceMapper.insert(service);
         if (result != 1) {
             GraceException.display(ResponseStatusEnum.SYSTEM_OPERATION_ERROR);

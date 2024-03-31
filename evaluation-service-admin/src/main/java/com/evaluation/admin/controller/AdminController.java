@@ -25,6 +25,8 @@ public class AdminController extends BaseController implements AdminControllerAp
 
     @Override
     public GraceJSONResult doLogonByPassword(String name, String password, HttpServletRequest request, HttpServletResponse response) {
+
+        // 判断名字和密码是否为空
         if (StringUtils.isBlank(name)) {
             return GraceJSONResult.errorCustom(ResponseStatusEnum.ADMIN_NOT_EXIT_ERROR);
         }
@@ -32,6 +34,7 @@ public class AdminController extends BaseController implements AdminControllerAp
             return GraceJSONResult.errorCustom(ResponseStatusEnum.ADMIN_PASSWORD_NULL_ERROR);
         }
 
+        // 查询管理员是否存在
         Admin admin = adminService.queryAdminByName(name);
         if (admin == null || !admin.getPassword().equals(password)) {
             return GraceJSONResult.errorCustom(ResponseStatusEnum.ADMIN_NOT_EXIT_ERROR);

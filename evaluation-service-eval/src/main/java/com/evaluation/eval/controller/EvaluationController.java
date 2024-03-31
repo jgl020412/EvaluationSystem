@@ -48,13 +48,14 @@ public class EvaluationController extends BaseController implements EvaluationCo
             }
         }
 
-        evaluationService.createEvaluation(newEvaluationBO, service);
+        evaluationService.createEvaluation(newEvaluationBO);
 
         return GraceJSONResult.ok();
     }
 
     @Override
     public GraceJSONResult queryMyList(String userId, String date, String serviceId, Integer level, Integer page, Integer pageSize) {
+
         if (StringUtils.isBlank(userId)) {
             return GraceJSONResult.errorCustom(ResponseStatusEnum.EVALUATION_QUERY_PARAMS_ERROR);
         }
@@ -92,7 +93,7 @@ public class EvaluationController extends BaseController implements EvaluationCo
     @Override
     public GraceJSONResult deleteEvaluation(String id, String userId) {
         Evaluation evaluation = evaluationService.queryEvaluation(id);
-        if (evaluation.getUserId() != userId) {
+        if (evaluation == null || evaluation.getUserId() != userId) {
             return GraceJSONResult.errorCustom(ResponseStatusEnum.EVALUATION_DELETE_FAILD);
         }
         evaluationService.deleteEvaluation(id);

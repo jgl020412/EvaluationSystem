@@ -13,9 +13,8 @@ public interface EvaluationService {
     /**
      * 创建评价
      * @param newEvaluationBO
-     * @param service
      */
-    public void createEvaluation(NewEvaluationBO newEvaluationBO, Service service);
+    public void createEvaluation(NewEvaluationBO newEvaluationBO);
 
     /**
      * 查询我的评价

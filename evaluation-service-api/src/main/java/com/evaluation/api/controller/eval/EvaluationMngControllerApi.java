@@ -17,7 +17,8 @@ public interface EvaluationMngControllerApi {
 
     @PostMapping("queryEvaluationList")
     @ApiOperation(value = "查看评价列表", notes = "查看评价列表", httpMethod = "POST")
-    public GraceJSONResult queryEvaluationList(@RequestParam String serviceId, @RequestParam Integer page,
+    public GraceJSONResult queryEvaluationList(@RequestParam String serviceId,
+                                               @RequestParam Integer page,
                                                @RequestParam Integer pageSize);
 
     @PostMapping("queryEvaluation")
