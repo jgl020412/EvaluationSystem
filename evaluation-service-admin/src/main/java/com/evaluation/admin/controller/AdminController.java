@@ -29,7 +29,7 @@ public class AdminController extends BaseController implements AdminControllerAp
             return GraceJSONResult.errorCustom(ResponseStatusEnum.ADMIN_NOT_EXIT_ERROR);
         }
         if (StringUtils.isBlank(password)) {
-            return GraceJSONResult.errorCustom(ResponseStatusEnum.ADMIN_PASSWORD_NULL_ERROR)
+            return GraceJSONResult.errorCustom(ResponseStatusEnum.ADMIN_PASSWORD_NULL_ERROR);
         }
 
         Admin admin = adminService.queryAdminByName(name);
