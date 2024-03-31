@@ -21,7 +21,7 @@ public interface EvaluationControllerApi {
 
     @PostMapping("createEvaluation")
     @ApiOperation(value = "用户创建评价", notes = "用户创建评价", httpMethod = "POST")
-    public GraceJSONResult createArticle(@RequestBody @Valid NewEvaluationBO newEvaluationBO);
+    public GraceJSONResult createEvaluation(@RequestBody @Valid NewEvaluationBO newEvaluationBO);
 
     @PostMapping("queryMyList")
     @ApiOperation(value = "查询用户的评价列表", notes = "查询用户的评价列表", httpMethod = "POST")
@@ -41,6 +41,6 @@ public interface EvaluationControllerApi {
 
     @PostMapping("deleteEvaluation")
     @ApiOperation(value = "删除评价", notes = "删除评价", httpMethod = "POST")
-    public GraceJSONResult deleteEvaluation(@RequestParam String id);
+    public GraceJSONResult deleteEvaluation(@RequestParam String id, @RequestParam String userId);
 
 }

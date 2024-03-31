@@ -42,11 +42,11 @@ public class PassportController extends BaseController implements PassportContro
 
         // 生成最随机证码并且发送短信
         String random = (int) ((Math.random() * 9 + 1) * 10000) + "";
-//        try {
-//            smsUtils.sendSMS(mobile, random);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            smsUtils.sendSMS(mobile, random);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         // 将验证码存入redis当中，用于后续验证
         redisOperator.set(MOBILE_SMSCODE + ":" + mobile, random, 30 * 60);
@@ -83,7 +83,7 @@ public class PassportController extends BaseController implements PassportContro
 
 
     @Override
-    public GraceJSONResult doLogonByPassWord(String mobile, String password, HttpServletRequest request, HttpServletResponse response) {
+    public GraceJSONResult doLogonByPassword(String mobile, String password, HttpServletRequest request, HttpServletResponse response) {
         User user = userService.queryMobileIsExist(mobile);
 
         // 1. 对登录的信息进行校验

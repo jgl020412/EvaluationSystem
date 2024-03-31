@@ -13,6 +13,8 @@ import java.util.List;
  **/
 public class BaseService {
 
+    protected static final String REDIS_ALL_SERVICE = "redis_all_service";
+
     @Autowired
     protected Sid sid;
 

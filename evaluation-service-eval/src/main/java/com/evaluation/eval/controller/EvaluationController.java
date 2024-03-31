@@ -5,6 +5,7 @@ import com.evaluation.api.controller.eval.EvaluationControllerApi;
 import com.evaluation.eval.service.EvaluationService;
 import com.evaluation.grace.result.GraceJSONResult;
 import com.evaluation.grace.result.ResponseStatusEnum;
+import com.evaluation.pojo.Evaluation;
 import com.evaluation.pojo.Service;
 import com.evaluation.pojo.bo.NewEvaluationBO;
 import com.evaluation.util.JsonUtils;
@@ -25,7 +26,7 @@ public class EvaluationController extends BaseController implements EvaluationCo
     private EvaluationService evaluationService;
 
     @Override
-    public GraceJSONResult createArticle(NewEvaluationBO newEvaluationBO) {
+    public GraceJSONResult createEvaluation(NewEvaluationBO newEvaluationBO) {
 
         String serviceId = newEvaluationBO.getServiceId();
 
@@ -47,10 +48,9 @@ public class EvaluationController extends BaseController implements EvaluationCo
             }
         }
 
-        // TODO 调用service进行添加评论
         evaluationService.createEvaluation(newEvaluationBO, service);
 
-        return null;
+        return GraceJSONResult.ok();
     }
 
     @Override
@@ -90,7 +90,11 @@ public class EvaluationController extends BaseController implements EvaluationCo
     }
 
     @Override
-    public GraceJSONResult deleteEvaluation(String id) {
+    public GraceJSONResult deleteEvaluation(String id, String userId) {
+        Evaluation evaluation = evaluationService.queryEvaluation(id);
+        if (evaluation.getUserId() != userId) {
+            return GraceJSONResult.errorCustom(ResponseStatusEnum.EVALUATION_DELETE_FAILD);
+        }
         evaluationService.deleteEvaluation(id);
         return GraceJSONResult.ok();
     }

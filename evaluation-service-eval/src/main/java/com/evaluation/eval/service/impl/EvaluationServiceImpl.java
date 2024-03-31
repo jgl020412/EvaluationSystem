@@ -88,4 +88,9 @@ public class EvaluationServiceImpl extends BaseService implements EvaluationServ
     public void deleteEvaluation(String id) {
         evaluationMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public Evaluation queryEvaluation(String id) {
+        return evaluationMapper.selectByPrimaryKey(id);
+    }
 }

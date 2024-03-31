@@ -1,5 +1,6 @@
 package com.evaluation.eval.service;
 
+import com.evaluation.pojo.Evaluation;
 import com.evaluation.pojo.Service;
 import com.evaluation.pojo.bo.NewEvaluationBO;
 import com.evaluation.util.PagedGridResult;
@@ -43,5 +44,12 @@ public interface EvaluationService {
      * @param id
      */
     public void deleteEvaluation(String id);
+
+    /**
+     * 查询指定id的评论
+     * @param id
+     * @return
+     */
+    public Evaluation queryEvaluation(String id);
 
 }
