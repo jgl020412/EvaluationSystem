@@ -49,7 +49,7 @@ public class AdminController extends BaseController implements AdminControllerAp
         setCookie(request, response, "aid", admin.getId(), COOKIE_MONTH);
         setCookie(request, response, "aname", admin.getName(), COOKIE_MONTH);
 
-        return GraceJSONResult.ok();
+        return GraceJSONResult.ok(admin);
     }
 
     @Override

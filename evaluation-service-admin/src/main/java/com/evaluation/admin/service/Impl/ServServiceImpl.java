@@ -49,8 +49,8 @@ public class ServServiceImpl extends BaseService implements ServService {
     @Override
     public boolean queryServiceIsExist(String name) {
         Example example = new Example(com.evaluation.pojo.Service.class);
-        Example.Criteria catCriteria = example.createCriteria();
-        catCriteria.andEqualTo("name", name);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("name", name);
 
         List<com.evaluation.pojo.Service> serviceList = serviceMapper.selectByExample(example);
 
@@ -65,6 +65,16 @@ public class ServServiceImpl extends BaseService implements ServService {
     @Override
     public List<com.evaluation.pojo.Service> queryServiceList() {
         return serviceMapper.selectAll();
+    }
+
+    @Override
+    public List<com.evaluation.pojo.Service> queryServiceListByName(String name) {
+        Example example = new Example(com.evaluation.pojo.Service.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("name", name);
+
+        List<com.evaluation.pojo.Service> serviceList = serviceMapper.selectByExample(example);
+        return serviceList;
     }
 
     @Override

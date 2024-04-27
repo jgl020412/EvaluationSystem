@@ -20,11 +20,15 @@ public interface ServiceMngControllerApi {
     public GraceJSONResult saveOrUpdateCategory(@RequestBody @Valid SaveServiceBO saveServiceBO);
     @PostMapping("getServiceList")
     @ApiOperation(value = "查询政务服务列表", notes = "查询政务服务列表", httpMethod = "POST")
-    public GraceJSONResult getCatList();
+    public GraceJSONResult getServiceList();
+
+    @PostMapping("getServiceListByName")
+    @ApiOperation(value = "根据名字查询服务列表", notes = "根据名字查询服务列表", httpMethod = "POST")
+    public GraceJSONResult getServiceList(@RequestParam String name);
 
     @GetMapping("getServices")
     @ApiOperation(value = "用户端查询政务服务列表", notes = "用户端查询政务服务列表", httpMethod = "GET")
-    public GraceJSONResult getCats();
+    public GraceJSONResult getServices();
 
     @PostMapping("deleteService")
     @ApiOperation(value = "删除指定服务", notes = "删除指定服务", httpMethod = "POST")

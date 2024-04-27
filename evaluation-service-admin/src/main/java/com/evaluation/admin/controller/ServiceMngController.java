@@ -47,13 +47,19 @@ public class ServiceMngController extends BaseController implements ServiceMngCo
     }
 
     @Override
-    public GraceJSONResult getCatList() {
+    public GraceJSONResult getServiceList() {
         List<Service> services = servService.queryServiceList();
         return GraceJSONResult.ok(services);
     }
 
     @Override
-    public GraceJSONResult getCats() {
+    public GraceJSONResult getServiceList(String name) {
+        List<Service> services = servService.queryServiceListByName(name);
+        return GraceJSONResult.ok(services);
+    }
+
+    @Override
+    public GraceJSONResult getServices() {
         String allServiceJson = redisOperator.get(REDIS_ALL_SERVICE);
 
         List<Service> serviceList = null;

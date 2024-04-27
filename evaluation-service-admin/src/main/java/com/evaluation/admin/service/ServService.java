@@ -35,6 +35,11 @@ public interface ServService {
     public List<Service> queryServiceList();
 
     /**
+     * 根据名字查询服务列表
+     */
+    public List<Service> queryServiceListByName(String name);
+
+    /**
      * 删除指定服务
      * @param id
      */
