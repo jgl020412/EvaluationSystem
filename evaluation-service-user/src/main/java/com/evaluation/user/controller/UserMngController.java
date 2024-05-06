@@ -5,11 +5,14 @@ import com.evaluation.api.controller.user.UserMngControllerApi;
 import com.evaluation.enums.UserStatus;
 import com.evaluation.grace.result.GraceJSONResult;
 import com.evaluation.grace.result.ResponseStatusEnum;
+import com.evaluation.pojo.User;
+import com.evaluation.pojo.bo.SearchUserBO;
 import com.evaluation.user.service.UserMngService;
 import com.evaluation.user.service.UserService;
 import com.evaluation.util.JsonUtils;
 import com.evaluation.util.PagedGridResult;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +31,7 @@ public class UserMngController extends BaseController implements UserMngControll
     private UserService userService;
 
     @Override
-    public GraceJSONResult getUserList(String name, Integer status, Integer page, Integer pageSize) {
+    public GraceJSONResult getUserList(Integer page, Integer pageSize) {
         if (page == null) {
             page = COMMON_START_PAGE;
         }
@@ -37,12 +40,26 @@ public class UserMngController extends BaseController implements UserMngControll
             pageSize = COMMON_PAGE_SIZE;
         }
 
-        PagedGridResult result = userMngService.queryAllUserList(name,
-                status,
+        PagedGridResult result = userMngService.queryAllUserList(
                 page,
                 pageSize);
 
         return GraceJSONResult.ok(result);
+    }
+
+    @Override
+    public GraceJSONResult getUserListByCondition(SearchUserBO searchUserBO, Integer page, Integer pageSize) {
+        if (page == null) {
+            page = COMMON_START_PAGE;
+        }
+
+        if (pageSize == null) {
+            pageSize = COMMON_PAGE_SIZE;
+        }
+        User user = new User();
+        BeanUtils.copyProperties(searchUserBO, user);
+        PagedGridResult pagedGridResult = userMngService.queryAllUserList(user, page, pageSize);
+        return GraceJSONResult.ok(pagedGridResult);
     }
 
     @Override

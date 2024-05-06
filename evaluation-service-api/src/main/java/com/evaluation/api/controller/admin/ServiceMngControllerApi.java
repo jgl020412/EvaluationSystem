@@ -15,9 +15,9 @@ import javax.validation.Valid;
 @RequestMapping("serviceMng")
 public interface ServiceMngControllerApi {
 
-    @PostMapping("saveOrUpdateCategory")
+    @PostMapping("saveOrUpdateService")
     @ApiOperation(value = "新增或修改政务服务", notes = "新增或修改政务服务", httpMethod = "POST")
-    public GraceJSONResult saveOrUpdateCategory(@RequestBody @Valid SaveServiceBO saveServiceBO);
+    public GraceJSONResult saveOrUpdateService(@RequestBody @Valid SaveServiceBO saveServiceBO);
     @PostMapping("getServiceList")
     @ApiOperation(value = "查询政务服务列表", notes = "查询政务服务列表", httpMethod = "POST")
     public GraceJSONResult getServiceList();

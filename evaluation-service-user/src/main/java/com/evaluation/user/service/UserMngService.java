@@ -1,5 +1,6 @@
 package com.evaluation.user.service;
 
+import com.evaluation.pojo.User;
 import com.evaluation.util.PagedGridResult;
 
 /**
@@ -9,13 +10,20 @@ public interface UserMngService {
 
     /**
      * 查询用户列表
-     * @param name
-     * @param status
      * @param page
      * @param pageSize
      * @return
      */
-    public PagedGridResult queryAllUserList(String name, Integer status, Integer page, Integer pageSize);
+    public PagedGridResult queryAllUserList(Integer page, Integer pageSize);
+
+    /**
+     * 根据条件获取用户列表
+     * @param user
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    public PagedGridResult queryAllUserList(User user, Integer page, Integer pageSize);
 
     /**
      * 冻结或解冻用户状态

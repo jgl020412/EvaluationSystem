@@ -25,7 +25,7 @@ public class ServiceMngController extends BaseController implements ServiceMngCo
     private ServService servService;
 
     @Override
-    public GraceJSONResult saveOrUpdateCategory(SaveServiceBO saveServiceBO) {
+    public GraceJSONResult saveOrUpdateService(SaveServiceBO saveServiceBO) {
         Service service = new Service();
         BeanUtils.copyProperties(saveServiceBO, service);
         // id为空新增，不为空修改
