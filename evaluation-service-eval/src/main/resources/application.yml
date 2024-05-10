@@ -50,7 +50,7 @@ spring:
 ############################################################
 mybatis:
   type-aliases-package: com.evaluation.pojo          # 所有POJO类所在包路径
-  mapper-locations: classpath:mapper/*.xml      # mapper映射文件
+  mapper-locations: classpath:mapper/eval/*.xml      # mapper映射文件
 
 ############################################################
 #

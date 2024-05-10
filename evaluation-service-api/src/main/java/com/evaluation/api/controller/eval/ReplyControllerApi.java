@@ -24,4 +24,8 @@ public interface ReplyControllerApi {
     @PostMapping("deleteReply")
     @ApiOperation(value = "删除回复", notes = "删除回复", httpMethod = "POST")
     public GraceJSONResult deleteReply(@RequestParam String id);
+
+    @PostMapping("getReplies")
+    @ApiOperation(value = "查询回复", notes = "查询回复", httpMethod = "POST")
+    public GraceJSONResult getReplies(@RequestParam String evaluationId);
 }

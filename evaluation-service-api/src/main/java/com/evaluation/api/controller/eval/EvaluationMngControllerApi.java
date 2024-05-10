@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+
 /**
  * @author 小亮
  **/
@@ -17,9 +19,10 @@ public interface EvaluationMngControllerApi {
 
     @PostMapping("queryEvaluationList")
     @ApiOperation(value = "查看评价列表", notes = "查看评价列表", httpMethod = "POST")
-    public GraceJSONResult queryEvaluationList(@RequestParam String serviceId,
-                                               @RequestParam Integer page,
-                                               @RequestParam Integer pageSize);
+    public GraceJSONResult queryEvaluationList(String serviceId,
+                                               String startDate,
+                                               String endDate,
+                                               String level) throws ParseException;
 
     @PostMapping("queryEvaluation")
     @ApiOperation(value = "查看评价", notes = "查看评价", httpMethod = "POST")

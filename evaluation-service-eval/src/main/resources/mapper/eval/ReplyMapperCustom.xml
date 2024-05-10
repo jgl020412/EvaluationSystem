@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.evaluation.eval.mapper.ReplyMapperCustom">
+
+    <select id="getReplyVOList" resultType="com.evaluation.pojo.vo.ReplyVO" parameterType="Map">
+        SELECT r.id as id,
+               r.user_id as userId,
+               r.father_id as fatherId,
+               r.evaluation_id as evaluationId,
+               r.content as content,
+               r.time as "time"
+        FROM reply r
+                 left join reply f
+                           on f.id = r.father_id
+        where r.evaluation_id = #{paramMap.evaluationId}
+        order by r.time
+                desc
+    </select>
+</mapper>

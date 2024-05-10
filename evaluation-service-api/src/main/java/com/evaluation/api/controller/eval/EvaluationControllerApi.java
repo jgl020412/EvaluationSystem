@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 
 /**
  * @author 小亮
@@ -33,11 +34,10 @@ public interface EvaluationControllerApi {
                                        @RequestParam Integer pageSize);
     @PostMapping("queryEvaluationListOfService")
     @ApiOperation(value="查询服务下的评价列表", notes = "查询服务下的评价列表", httpMethod = "POST")
-    public GraceJSONResult queryEvaluationListOfService(@RequestParam String serviceId,
-                                                        @RequestParam String date,
-                                                        @RequestParam Integer level,
-                                                        @RequestParam Integer page,
-                                                        @RequestParam Integer pageSize);
+    public GraceJSONResult queryEvaluationList(@RequestParam String serviceId,
+                                                        @RequestParam String startDate,
+                                                        @RequestParam String endDate,
+                                                        @RequestParam Integer level) throws ParseException;
 
     @PostMapping("deleteEvaluation")
     @ApiOperation(value = "删除评价", notes = "删除评价", httpMethod = "POST")

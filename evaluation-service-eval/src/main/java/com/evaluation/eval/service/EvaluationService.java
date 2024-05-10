@@ -1,9 +1,12 @@
 package com.evaluation.eval.service;
 
 import com.evaluation.pojo.Evaluation;
-import com.evaluation.pojo.Service;
 import com.evaluation.pojo.bo.NewEvaluationBO;
+import com.evaluation.pojo.vo.EvaluationVO;
 import com.evaluation.util.PagedGridResult;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author 小亮
@@ -28,15 +31,15 @@ public interface EvaluationService {
     public PagedGridResult queryMyList(String userId, String date, String serviceId, Integer level, Integer page, Integer pageSize);
 
     /**
-     * 查询指定服务的评价列表
+     * 根据条件查询评价列表
+     *
      * @param serviceId
-     * @param date
+     * @param startDate
+     * @param endDate
      * @param level
-     * @param page
-     * @param pageSize
      * @return
      */
-    public PagedGridResult queryEvaluationListOfService(String serviceId, String date, Integer level, Integer page, Integer pageSize);
+    public List<EvaluationVO> queryEvaluationList(String serviceId, Date startDate, Date endDate, Integer level);
 
     /**
      * 删除评论

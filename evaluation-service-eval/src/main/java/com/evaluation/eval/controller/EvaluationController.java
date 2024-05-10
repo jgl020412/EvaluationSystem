@@ -8,12 +8,17 @@ import com.evaluation.grace.result.ResponseStatusEnum;
 import com.evaluation.pojo.Evaluation;
 import com.evaluation.pojo.Service;
 import com.evaluation.pojo.bo.NewEvaluationBO;
+import com.evaluation.pojo.vo.EvaluationVO;
 import com.evaluation.util.JsonUtils;
 import com.evaluation.util.PagedGridResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -73,21 +78,16 @@ public class EvaluationController extends BaseController implements EvaluationCo
     }
 
     @Override
-    public GraceJSONResult queryEvaluationListOfService(String serviceId, String date, Integer level, Integer page, Integer pageSize) {
-        if (StringUtils.isBlank(serviceId)) {
-            return GraceJSONResult.errorCustom(ResponseStatusEnum.EVALUATION_QUERY_PARAMS_ERROR);
+    public GraceJSONResult queryEvaluationList(String serviceId, String startDate, String endDate, Integer level) throws ParseException {
+        Date start = null;
+        Date end = null;
+        if (StringUtils.isNotBlank(startDate) && StringUtils.isNotBlank(endDate)) {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            start = dateFormat.parse(startDate);
+            end = dateFormat.parse(endDate);
         }
-
-        if (page == null) {
-            page = COMMON_START_PAGE;
-        }
-        if (pageSize == null) {
-            pageSize = COMMON_PAGE_SIZE;
-        }
-
-        PagedGridResult pagedGridResult = evaluationService.queryEvaluationListOfService(serviceId, date, level, page, pageSize);
-
-        return GraceJSONResult.ok(pagedGridResult);
+        List<EvaluationVO> evaluations = evaluationService.queryEvaluationList(serviceId, start, end, level);
+        return GraceJSONResult.ok(evaluations);
     }
 
     @Override

@@ -34,4 +34,12 @@ public class ReplyController extends BaseController implements ReplyControllerAp
         return GraceJSONResult.ok();
     }
 
+    @Override
+    public GraceJSONResult getReplies(String evaluationId) {
+        if (StringUtils.isBlank(evaluationId)) {
+            return GraceJSONResult.errorCustom(ResponseStatusEnum.SERVICE_NOT_EXIST_ERROR);
+        }
+        return GraceJSONResult.ok(replyService.getReplyList(evaluationId));
+    }
+
 }

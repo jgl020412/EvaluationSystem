@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.evaluation.eval.mapper.EvaluationCustomMapper">
+
+    <select id="queryEvaluationVOList"
+            resultType="com.evaluation.pojo.vo.EvaluationVO"
+            parameterType="Map">
+        SELECT e.id AS id,
+               s.name AS name,
+               e.SERVICE_ID AS serviceId,
+               e.USER_ID AS userId,
+               e.CONTENT AS content,
+               e.LEVEL AS level,
+               e.TIME AS "time"
+        FROM
+            evaluation e
+        INNER JOIN
+            service s
+        ON
+            s.id = e.SERVICE_ID
+        <where>
+            <if test="paramMap != null and paramMap.serviceId != null and paramMap.serviceId != ''">
+                AND SERVICE_ID = #{paramMap.serviceId}
+            </if>
+            <if test="paramMap != null and paramMap.level != null and paramMap.level != ''">
+                AND e.level = #{paramMap.level}
+            </if>
+            <if test="paramMap != null and paramMap.startDate != null and paramMap.startDate != '' and paramMap.endDate != null and paramMap.endDate != ''">
+                AND <![CDATA[ e.TIME >= #{paramMap.startDate} AND e.TIME <= #{paramMap.endDate} ]]>
+            </if>
+        </where>
+        ORDER BY
+        e.time
+        DESC;
+
+    </select>
+
+</mapper>
