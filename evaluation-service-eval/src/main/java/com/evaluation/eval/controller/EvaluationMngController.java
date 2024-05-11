@@ -54,4 +54,19 @@ public class EvaluationMngController extends BaseController implements Evaluatio
         evaluationService.deleteEvaluation(id);
         return GraceJSONResult.ok();
     }
+
+    @Override
+    public GraceJSONResult getTotalEvaluationCount() {
+        return GraceJSONResult.ok(evaluationService.getEvaluationCount(null));
+    }
+
+    @Override
+    public GraceJSONResult getLevelRatio() {
+        return GraceJSONResult.ok(evaluationService.getEvaluationRatio());
+    }
+
+    @Override
+    public GraceJSONResult getAnalysisEvaluation(Integer level) {
+        return GraceJSONResult.ok(evaluationService.getEvaluationAnslysisVOList(level));
+    }
 }

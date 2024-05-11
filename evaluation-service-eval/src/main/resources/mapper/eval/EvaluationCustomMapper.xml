@@ -34,5 +34,28 @@
         DESC;
 
     </select>
+    <select id="queryEvaluationAnalysisVOList"
+            resultType="com.evaluation.pojo.vo.EvaluationAnalysisVO"
+            parameterType="Map">
+        SELECT s.name AS serviceName,
+        e.LEVEL AS level,
+        count(*) as "count"
+        FROM
+        evaluation e
+        INNER JOIN
+        service s
+        ON
+        s.id = e.SERVICE_ID
+        <where>
+            <if test="paramMap != null and paramMap.level != null">
+                AND e.level = #{paramMap.level}
+            </if>
+        </where>
+        group by
+        s.id,
+        e.LEVEL
+        order by
+        count(*) ASC;
+    </select>
 
 </mapper>

@@ -79,4 +79,9 @@ public class ServiceMngController extends BaseController implements ServiceMngCo
         redisOperator.del(REDIS_ALL_SERVICE);
         return GraceJSONResult.ok();
     }
+
+    @Override
+    public GraceJSONResult getTotalServiceCount() {
+        return GraceJSONResult.ok(servService.getServiceCount(null));
+    }
 }

@@ -45,4 +45,11 @@ public interface ServService {
      */
     public void deleteService(String id);
 
+    /**
+     * 获取服务数量
+     * @param service
+     * @return
+     */
+    public Integer getServiceCount(Service service);
+
 }

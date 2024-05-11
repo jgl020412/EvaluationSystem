@@ -1,7 +1,10 @@
 package com.evaluation.user.service;
 
 import com.evaluation.pojo.User;
+import com.evaluation.pojo.vo.RegionRatioVO;
 import com.evaluation.util.PagedGridResult;
+
+import java.util.List;
 
 /**
  * @author 小亮
@@ -31,5 +34,19 @@ public interface UserMngService {
      * @param status
      */
     public void freezeUserOrNot(String id, Integer status);
+
+
+    /**
+     * 获取用户数量
+     * @param user
+     * @return
+     */
+    public Integer getUserCount(User user);
+
+    /**
+     * 获取用户地区分布情况
+     * @return
+     */
+    public List<RegionRatioVO> getRegionRatio();
 
 }

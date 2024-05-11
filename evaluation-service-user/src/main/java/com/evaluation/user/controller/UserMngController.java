@@ -48,6 +48,12 @@ public class UserMngController extends BaseController implements UserMngControll
     }
 
     @Override
+    public GraceJSONResult getTotalUserCount() {
+        Integer userCount = userMngService.getUserCount(null);
+        return GraceJSONResult.ok(userCount);
+    }
+
+    @Override
     public GraceJSONResult getUserListByCondition(SearchUserBO searchUserBO, Integer page, Integer pageSize) {
         if (page == null) {
             page = COMMON_START_PAGE;
@@ -84,5 +90,10 @@ public class UserMngController extends BaseController implements UserMngControll
         }
 
         return GraceJSONResult.ok(userService.queryUserById(userId));
+    }
+
+    @Override
+    public GraceJSONResult getRegionRatioOfUser() {
+        return GraceJSONResult.ok(userMngService.getRegionRatio());
     }
 }

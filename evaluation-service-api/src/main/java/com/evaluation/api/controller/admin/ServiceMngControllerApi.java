@@ -34,4 +34,8 @@ public interface ServiceMngControllerApi {
     @ApiOperation(value = "删除指定服务", notes = "删除指定服务", httpMethod = "POST")
     public GraceJSONResult deleteService(@RequestParam String id);
 
+    @GetMapping("getTotalServiceCount")
+    @ApiOperation(value = "获取服务数量", notes = "获取服务数量", httpMethod = "GET")
+    public GraceJSONResult getTotalServiceCount();
+
 }

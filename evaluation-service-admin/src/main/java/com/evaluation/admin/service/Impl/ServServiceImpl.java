@@ -81,4 +81,9 @@ public class ServServiceImpl extends BaseService implements ServService {
     public void deleteService(String id) {
         serviceMapper.deleteByPrimaryKey(id);
     }
+
+    @Override
+    public Integer getServiceCount(com.evaluation.pojo.Service service) {
+        return serviceMapper.selectCount(service);
+    }
 }

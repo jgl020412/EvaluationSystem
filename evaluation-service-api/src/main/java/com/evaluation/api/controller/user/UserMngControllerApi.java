@@ -4,10 +4,7 @@ import com.evaluation.grace.result.GraceJSONResult;
 import com.evaluation.pojo.bo.SearchUserBO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author 小亮
@@ -21,6 +18,9 @@ public interface UserMngControllerApi {
     public GraceJSONResult getUserList(@RequestParam Integer page,
                                        @RequestParam Integer pageSize);
 
+    @ApiOperation(value = "获取用户数量", notes = "获取用户数量", httpMethod = "GET")
+    @GetMapping("/getTotalUserCount")
+    public GraceJSONResult getTotalUserCount();
 
     @ApiOperation(value = "根据条件获取用户列表", notes = "根据条件获取用户列表", httpMethod = "POST")
     @PostMapping("/getUserListByCondition")
@@ -34,4 +34,9 @@ public interface UserMngControllerApi {
     @ApiOperation(value = "查看用户详情", notes = "查看用户详情", httpMethod = "POST")
     @PostMapping("/userDetail")
     public GraceJSONResult userDetail(@RequestParam String userId);
+
+    @ApiOperation(value = "查看用户地区分布", notes = "查看用户地区分布", httpMethod = "GET")
+    @GetMapping("/getRegionRatioOfUser")
+    public GraceJSONResult getRegionRatioOfUser();
+
 }

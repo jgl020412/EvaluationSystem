@@ -2,7 +2,9 @@ package com.evaluation.eval.service;
 
 import com.evaluation.pojo.Evaluation;
 import com.evaluation.pojo.bo.NewEvaluationBO;
+import com.evaluation.pojo.vo.EvaluationAnalysisVO;
 import com.evaluation.pojo.vo.EvaluationVO;
+import com.evaluation.pojo.vo.LevelRatioVO;
 import com.evaluation.util.PagedGridResult;
 
 import java.util.Date;
@@ -53,5 +55,25 @@ public interface EvaluationService {
      * @return
      */
     public Evaluation queryEvaluation(String id);
+
+    /**
+     * 获取评价数量
+     * @param evaluation
+     * @return
+     */
+    public Integer getEvaluationCount(Evaluation evaluation);
+
+    /**
+     * 获取评价级别的分布情况
+     * @return
+     */
+    public List<LevelRatioVO> getEvaluationRatio();
+
+    /**
+     * 获取满意度分析的数据
+     * @param level
+     * @return
+     */
+    public List<EvaluationAnalysisVO> getEvaluationAnslysisVOList(Integer level);
 
 }
