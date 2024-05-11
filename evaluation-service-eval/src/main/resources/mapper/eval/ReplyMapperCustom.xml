@@ -3,12 +3,15 @@
 <mapper namespace="com.evaluation.eval.mapper.ReplyMapperCustom">
 
     <select id="getReplyVOList" resultType="com.evaluation.pojo.vo.ReplyVO" parameterType="Map">
-        SELECT r.id as id,
-               r.user_id as userId,
-               r.father_id as fatherId,
+        SELECT r.id            as id,
+               r.user_id       as userId,
+               r.father_id     as fatherId,
                r.evaluation_id as evaluationId,
-               r.content as content,
-               r.time as "time"
+               r.content       as content,
+               r.time          as "time",
+               f.content       as fatherContent,
+               f.user_id       as fatherUserId,
+               r.is_admin      as isAdmin
         FROM reply r
                  left join reply f
                            on f.id = r.father_id

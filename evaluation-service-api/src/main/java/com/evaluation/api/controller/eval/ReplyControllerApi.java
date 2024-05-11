@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public interface ReplyControllerApi {
     @PostMapping("createReply")
     @ApiOperation(value = "创建回复", notes = "创建回复", httpMethod = "POST")
-    public GraceJSONResult createReply(@RequestBody @Valid NewReplyBO newReplyBO);
+    public GraceJSONResult createReply(@RequestBody NewReplyBO newReplyBO);
 
     @PostMapping("deleteReply")
     @ApiOperation(value = "删除回复", notes = "删除回复", httpMethod = "POST")

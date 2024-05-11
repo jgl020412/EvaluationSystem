@@ -13,7 +13,17 @@ public class ReplyVO {
     private String evaluationId;
     private String content;
     private Date time;
+    private String fatherContent;
     private Integer isAdmin;
+    private String fatherUserId;
+
+    public String getFatherUserId() {
+        return fatherUserId;
+    }
+
+    public void setFatherUserId(String fatherUserId) {
+        this.fatherUserId = fatherUserId;
+    }
 
     public String getId() {
         return id;
@@ -70,4 +80,13 @@ public class ReplyVO {
     public void setIsAdmin(Integer isAdmin) {
         this.isAdmin = isAdmin;
     }
+
+    public String getFatherContent() {
+        return fatherContent;
+    }
+
+    public void setFatherContent(String fatherContent) {
+        this.fatherContent = fatherContent;
+    }
+
 }
