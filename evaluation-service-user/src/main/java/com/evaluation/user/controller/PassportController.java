@@ -77,7 +77,7 @@ public class PassportController extends BaseController implements PassportContro
             user = userService.createUser(registerLoginBo);
         }
 
-        return GraceJSONResult.ok();
+        return GraceJSONResult.ok(user);
 
     }
 
@@ -117,5 +117,16 @@ public class PassportController extends BaseController implements PassportContro
         setCookie(request, response, "uid", "", COOKIE_DELETE);
 
         return GraceJSONResult.ok();
+    }
+
+    @Override
+    public GraceJSONResult isExit(String mobile, String smsCode, HttpServletRequest request, HttpServletResponse response) {
+        User user = userService.queryMobileIsExist(mobile);
+        // 1. 校验验证码是否正确
+        String redisSmsCode = redisOperator.get(MOBILE_SMSCODE + ":" + mobile);
+        if (StringUtils.isBlank(redisSmsCode) || !redisSmsCode.equalsIgnoreCase(smsCode)) {
+            return GraceJSONResult.errorCustom(ResponseStatusEnum.SMS_CODE_ERROR);
+        }
+        return GraceJSONResult.ok(user);
     }
 }

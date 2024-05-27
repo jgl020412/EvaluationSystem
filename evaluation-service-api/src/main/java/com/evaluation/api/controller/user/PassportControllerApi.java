@@ -31,4 +31,11 @@ public interface PassportControllerApi {
     public GraceJSONResult logout(@RequestParam String userId,
                                   HttpServletRequest request,
                                   HttpServletResponse response);
+
+    @ApiOperation(value = "判断用户是否存在", notes = "判断用户是否存在", httpMethod = "POST")
+    @PostMapping("/isExit")
+    public GraceJSONResult isExit(@RequestParam String mobile,
+                                  @RequestParam String smsCode,
+                                  HttpServletRequest request,
+                                  HttpServletResponse response);
 }
