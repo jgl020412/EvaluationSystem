@@ -127,6 +127,10 @@ public class PassportController extends BaseController implements PassportContro
         if (StringUtils.isBlank(redisSmsCode) || !redisSmsCode.equalsIgnoreCase(smsCode)) {
             return GraceJSONResult.errorCustom(ResponseStatusEnum.SMS_CODE_ERROR);
         }
+        if (user == null) {
+            user = new User();
+            user.setPhoneNum(mobile);
+        }
         return GraceJSONResult.ok(user);
     }
 }
