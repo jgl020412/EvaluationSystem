@@ -20,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author 小亮
@@ -42,8 +43,9 @@ public class EvaluationController extends BaseController implements EvaluationCo
             return GraceJSONResult.errorCustom(ResponseStatusEnum.SYSTEM_OPERATION_ERROR);
         } else {
             List<Service> services = JsonUtils.jsonToList(allServiceJson, Service.class);
+            assert services != null;
             for (Service s : services) {
-                if (s.getId() == serviceId) {
+                if (Objects.equals(s.getId(), serviceId)) {
                     service = s;
                     break;
                 }
