@@ -4,10 +4,7 @@ import com.evaluation.grace.result.GraceJSONResult;
 import com.evaluation.pojo.bo.NewEvaluationBO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.text.ParseException;
@@ -42,5 +39,13 @@ public interface EvaluationControllerApi {
     @PostMapping("deleteEvaluation")
     @ApiOperation(value = "删除评价", notes = "删除评价", httpMethod = "POST")
     public GraceJSONResult deleteEvaluation(@RequestParam String id, @RequestParam String userId);
+
+    @GetMapping("queryAllEvaluation")
+    @ApiOperation(value = "获取所有评价列表", notes = "获取所有评价列表", httpMethod = "GET")
+    public GraceJSONResult queryAllEvaluation();
+
+    @GetMapping("queryEvaluationOfUser")
+    @ApiOperation(value = "获取某一个用户的评价列表", notes = "获取某一个用户的评价列表", httpMethod = "GET")
+    public GraceJSONResult queryEvaluationOfUser(@RequestParam String userId);
 
 }

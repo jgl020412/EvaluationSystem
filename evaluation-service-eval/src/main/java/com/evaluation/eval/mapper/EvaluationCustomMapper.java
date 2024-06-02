@@ -24,4 +24,8 @@ public interface EvaluationCustomMapper {
      * @return
      */
     public List<EvaluationAnalysisVO> queryEvaluationAnalysisVOList(@Param("paramMap") Map<String, Object> map);
+
+    public List<EvaluationVO> queryAllEvaluationList();
+
+    public List<EvaluationVO> queryEvaluationListOfUser(@Param("paramMap") Map<String, Object> map);
 }

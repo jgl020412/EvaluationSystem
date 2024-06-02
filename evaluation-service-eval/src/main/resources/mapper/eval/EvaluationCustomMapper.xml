@@ -6,18 +6,18 @@
             resultType="com.evaluation.pojo.vo.EvaluationVO"
             parameterType="Map">
         SELECT e.id AS id,
-               s.name AS name,
-               e.SERVICE_ID AS serviceId,
-               e.USER_ID AS userId,
-               e.CONTENT AS content,
-               e.LEVEL AS level,
-               e.TIME AS "time"
+        s.name AS name,
+        e.SERVICE_ID AS serviceId,
+        e.USER_ID AS userId,
+        e.CONTENT AS content,
+        e.LEVEL AS level,
+        e.TIME AS "time"
         FROM
-            evaluation e
+        evaluation e
         INNER JOIN
-            service s
+        service s
         ON
-            s.id = e.SERVICE_ID
+        s.id = e.SERVICE_ID
         <where>
             <if test="paramMap != null and paramMap.serviceId != null and paramMap.serviceId != ''">
                 AND SERVICE_ID = #{paramMap.serviceId}
@@ -56,6 +56,50 @@
         e.LEVEL
         order by
         count(*) ASC;
+    </select>
+
+    <select id="queryAllEvaluationList"
+            resultType="com.evaluation.pojo.vo.EvaluationVO">
+        SELECT e.id         AS id,
+               s.name       AS name,
+               e.SERVICE_ID AS serviceId,
+               e.USER_ID    AS userId,
+               e.CONTENT    AS content,
+               e.LEVEL      AS level,
+               e.TIME       AS "time"
+        FROM evaluation e
+                 INNER JOIN
+             service s
+             ON
+                 s.id = e.SERVICE_ID
+        ORDER BY e.time
+                DESC;
+
+    </select>
+
+    <select id="queryEvaluationListOfUser"
+            resultType="com.evaluation.pojo.vo.EvaluationVO"
+            parameterType="Map">
+        SELECT e.id AS id,
+        s.name AS name,
+        e.SERVICE_ID AS serviceId,
+        e.USER_ID AS userId,
+        e.CONTENT AS content,
+        e.LEVEL AS level,
+        e.TIME AS "time"
+        FROM evaluation e
+        INNER JOIN
+        service s
+        ON
+        s.id = e.SERVICE_ID
+        <where>
+            <if test="paramMap != null and paramMap.userId != null and paramMap.userId != ''">
+                AND USER_ID = #{paramMap.userId}
+            </if>
+        </where>
+        ORDER BY e.time
+        DESC;
+
     </select>
 
 </mapper>

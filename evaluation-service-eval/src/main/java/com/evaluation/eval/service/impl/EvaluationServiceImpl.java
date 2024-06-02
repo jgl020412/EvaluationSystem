@@ -135,4 +135,16 @@ public class EvaluationServiceImpl extends BaseService implements EvaluationServ
         map.put("level", level);
         return evaluationCustomMapper.queryEvaluationAnalysisVOList(map);
     }
+
+    @Override
+    public List<EvaluationVO> getMyAllEvaluation(String userId) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userId", userId);
+        return evaluationCustomMapper.queryEvaluationListOfUser(map);
+    }
+
+    @Override
+    public List<EvaluationVO> getAllEvaluation() {
+        return evaluationCustomMapper.queryAllEvaluationList();
+    }
 }

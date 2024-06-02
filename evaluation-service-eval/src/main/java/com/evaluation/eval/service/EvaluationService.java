@@ -76,4 +76,17 @@ public interface EvaluationService {
      */
     public List<EvaluationAnalysisVO> getEvaluationAnslysisVOList(Integer level);
 
+    /**
+     * 获取某一用户的所有评价列表
+     * @param userId
+     * @return
+     */
+    public List<EvaluationVO> getMyAllEvaluation(String userId);
+
+    /**
+     * 获取所有评价的列表
+     * @return
+     */
+    public List<EvaluationVO> getAllEvaluation();
+
 }

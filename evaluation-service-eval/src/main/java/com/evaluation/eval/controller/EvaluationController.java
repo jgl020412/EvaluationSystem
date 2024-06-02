@@ -99,4 +99,14 @@ public class EvaluationController extends BaseController implements EvaluationCo
         evaluationService.deleteEvaluation(id);
         return GraceJSONResult.ok();
     }
+
+    @Override
+    public GraceJSONResult queryAllEvaluation() {
+        return GraceJSONResult.ok(evaluationService.getAllEvaluation());
+    }
+
+    @Override
+    public GraceJSONResult queryEvaluationOfUser(String userId) {
+        return GraceJSONResult.ok(evaluationService.getMyAllEvaluation(userId));
+    }
 }
