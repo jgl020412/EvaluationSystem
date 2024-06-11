@@ -4,10 +4,7 @@ import com.evaluation.grace.result.GraceJSONResult;
 import com.evaluation.pojo.bo.NewReplyBO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -25,7 +22,7 @@ public interface ReplyControllerApi {
     @ApiOperation(value = "删除回复", notes = "删除回复", httpMethod = "POST")
     public GraceJSONResult deleteReply(@RequestParam String id);
 
-    @PostMapping("getReplies")
-    @ApiOperation(value = "查询回复", notes = "查询回复", httpMethod = "POST")
+    @GetMapping("getReplies")
+    @ApiOperation(value = "查询回复", notes = "查询回复", httpMethod = "GET")
     public GraceJSONResult getReplies(@RequestParam String evaluationId);
 }
